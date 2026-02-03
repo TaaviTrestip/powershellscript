@@ -1,7 +1,7 @@
 ﻿Write-Host "I want to learn Powershell" -ForegroundColor Green
 
-Write-Host "Variable" -ForegroundColor Cyan
 # Variable
+Write-Host "Variable" -ForegroundColor Cyan
 10+4
 10-4
 10*4
@@ -12,8 +12,8 @@ $a+$b
 $a-$b
 $a*$b
 
-Write-Host "Data Types" -ForegroundColor Cyan
 # Data Types
+Write-Host "Data Types" -ForegroundColor Cyan
 $v = 1 + 1
 $v
 $v.GetType()
@@ -29,6 +29,8 @@ $v = 1.9
 [boolean]$v
 [datetime]$v
 
+# Arrays
+Write-Host "Arrays" -ForegroundColor Cyan
 $nameArray = @("John Pork","Joe Mama","crocodilobombardino")
 $nameArray[0]
 $nameArray[1]
