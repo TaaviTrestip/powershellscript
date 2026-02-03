@@ -28,3 +28,19 @@ $v = 1.9
 [string]$v
 [boolean]$v
 [datetime]$v
+
+$nameArray = @("John Pork","Joe Mama","crocodilobombardino")
+$nameArray[0]
+$nameArray[1]
+$nameArray[2]
+# Practice 1
+$array1 = @(1, 2, 3)
+$array2 = @(4, 5, 6)
+
+$array3 = @()
+
+$array3 += $array1[0] + $array2[0]
+$array3 += $array1[1] + $array2[1]
+$array3 += $array1[2] + $array2[2]
+
+$array3
