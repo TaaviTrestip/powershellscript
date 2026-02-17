@@ -12,7 +12,7 @@ $data = Get-Service $s | Select Name,Status
 $result += $data
 }
 
-$result
+# $result
 
 $result = @()
 $services = Get-Content "C:\Users\Taavi\powershellscript\powershell for beginners\Services.txt"
@@ -26,10 +26,10 @@ $services | ForEach-Object {
     $result += $data
 }
 
-$result
+# $result
 
 # Practice 6
-Write-Host "Practice 6" -ForegroundColor Cyan
+Write-Host "Practice 6" -ForegroundColor Red
 $students = Import-Csv "C:\Users\Taavi\powershellscript\powershell for beginners\ages.csv" -Header Name,Age
 
 $result = foreach ($student in $students) {
@@ -47,6 +47,23 @@ $result = foreach ($student in $students) {
     }
 }
 
-$result
-
 $result | Export-Csv "C:\Users\Taavi\powershellscript\powershell for beginners\schoolresults.csv" -NoTypeInformation
+
+# For Loop
+Write-Host "For Loop" -ForegroundColor Cyan
+for($i = 1 ; $i -le 10 ; $i++)
+{
+Write-Host "Current value : "$i -ForegroundColor Green
+}
+
+$groups = "Red","Green","Yellow","Blue"
+
+$result = foreach ($roll in 1..20) {
+
+    [PSCustomObject]@{
+        RollNumber = $roll
+        Group      = Get-Random -InputObject $groups
+    }
+}
+
+$result
