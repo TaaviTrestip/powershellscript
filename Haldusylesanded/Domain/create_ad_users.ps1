@@ -44,15 +44,31 @@ foreach ($user in $users){
     # Display Name
     $displayname = $user.FirstName + " " + $user.LastName
 
-    # Create the user
-    New-ADUser -Name $username `
-        -DisplayName $displayname `
-        -GivenName $user.FirstName `
-        -Surname $user.LastName `
-        -Department $user.Department `
-        -Title $user.Role `
-        -UserPrincipalName $upname `
-        -AccountPassword (ConvertTo-SecureString $user.Password -AsPlainText -Force) -Enabled $true
+    # Check if user already exists
+    $existingUser = Get-ADUser -Filter "SamAccountName -eq '$username'" -ErrorAction SilentlyContinue
+
+    if ($existingUser) {
+        Write-Host "User '$username' already exists. Skipping." -ForegroundColor Yellow
+    } else {
+        # Create the user
+        New-ADUser -Name $username `
+            -DisplayName $displayname `
+            -GivenName $user.FirstName `
+            -Surname $user.LastName `
+            -Department $user.Department `
+            -Title $user.Role `
+            -UserPrincipalName $upname `
+            -AccountPassword (ConvertTo-SecureString $user.Password -AsPlainText -Force) `
+            -Enabled $true
+
+        # Check if creation succeeded
+        if ($?) {
+            Write-Host "New user '$username' was created successfully." -ForegroundColor Green
+        } else {
+            Write-Host "Adding user '$username' failed." -ForegroundColor Red
+        }
+}
+
 }
 
 # Check users
