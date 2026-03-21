@@ -36,6 +36,9 @@ New-LocalUser "$kasutajanimi" -Password $parool -FullName "$taisnimi" -Descripti
 # Kontrollib käsu õnnestumist süsteemimuutuja $? abil
 if ($?) {
     Write-Host "Kasutaja $kasutajanimi loodi edukalt!" -ForegroundColor Green
+
+    # Lisa kasutaja Users gruppi
+    Add-LocalGroupMember -Group "Users" -Member $kasutajanimi -ErrorAction SilentlyContinue
 }
 else {
     Write-Host "Kasutaja loomine ebaõnnestus!" -ForegroundColor Red
